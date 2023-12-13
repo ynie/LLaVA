@@ -51,7 +51,7 @@ def load_pretrained_model(model_path,
         kwargs['torch_dtype'] = torch.float16
 
     tokenizer = AutoTokenizer.from_pretrained(model_path, use_fast=False, cache_dir=cache_dir)
-    model = LlavaLlamaForCausalLM.from_pretrained(model_path, low_cpu_mem_usage=True, offload_folder=cache_dir, trust_remote_code=True, **kwargs)
+    model = LlavaLlamaForCausalLM.from_pretrained(model_path, device_map="auto", low_cpu_mem_usage=True, offload_folder=cache_dir, trust_remote_code=True, **kwargs)
 
     image_processor = None
 
